@@ -13,9 +13,9 @@ const getBackendUrl = () => {
       return `http://${window.location.hostname}:8000`;
     }
     // Deployed production domain (e.g. Vercel) with no backend configured yet
-    return "";
+    return "https://safe-signal-backend-gf5t.onrender.com";
   }
-  return "http://localhost:8000";
+  return "https://safe-signal-backend-gf5t.onrender.com";
 };
 
 // Built-in curated resources for client-side fallback
