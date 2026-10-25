@@ -1,0 +1,46 @@
+[
+  {
+    "id": "kb-cyber-portal-overview",
+    "title": "National Cyber Crime Reporting Portal (cybercrime.gov.in)",
+    "category": "reporting_portal",
+    "content": "The National Cyber Crime Reporting Portal (https://cybercrime.gov.in) is an initiative of the Government of India to facilitate victims and complainants to report cyber crime complaints online. The portal has a dedicated section for 'Report Crime Related to Women/Child'. Complaints filed under this section are prioritized and directly forwarded to the relevant state or Union Territory police cyber cell for investigation.",
+    "source_name": "Indian Cyber Crime Coordination Centre (I4C), MHA",
+    "source_url": "https://cybercrime.gov.in",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "keywords": ["cybercrime.gov.in", "portal", "file complaint", "police cyber cell", "online reporting"]
+  },
+  {
+    "id": "kb-cyber-anonymous-reporting",
+    "title": "Anonymous vs Tracked Reporting for Women and Child Cybercrimes",
+    "category": "reporting_procedure",
+    "content": "On the National Cyber Crime Reporting Portal (cybercrime.gov.in), when reporting crimes related to women and children, you have two options: 1) 'Report Anonymously': Does not require your personal name or identity; you receive an incident ID to track updates, and it is handled without publicly revealing your name. 2) 'Report and Track': Requires your mobile OTP or email, giving you a full acknowledgement number, police station assignment, and regular SMS tracking status. Choose the option you feel safest with.",
+    "source_name": "National Cyber Crime Reporting Portal Guidelines",
+    "source_url": "https://cybercrime.gov.in/Webform/Crime_AuthoLogin.aspx",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "keywords": ["anonymous reporting", "tracked reporting", "confidentiality", "police station", "acknowledgement number"]
+  },
+  {
+    "id": "kb-cyber-evidence-preservation",
+    "title": "Official Digital Evidence Preservation Protocol",
+    "category": "evidence_preservation",
+    "content": "To build an admissible case before law enforcement: 1) Take uncropped full-screen screenshots displaying the date, time, status bar, and sender username/ID. 2) Copy and save the exact profile URL and post permalink (do not rely on display names as they can be changed quickly). 3) Preserve message headers or chat export files where possible without editing them. 4) Do not delete the conversation thread until you have captured backups. 5) Store files in a secure local folder or cloud drive with timestamped filenames. 6) CRITICAL: Never forward, share, or upload non-consensual intimate or morphed images to any chat group or third-party service.",
+    "source_name": "Cyber Swachhta Kendra & Indian Cyber Crime Coordination Centre Guidelines",
+    "source_url": "https://cybercrime.gov.in/Webform/Crime_UserManual.aspx",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "keywords": ["evidence", "screenshots", "timestamps", "urls", "chat export", "preservation"]
+  },
+  {
+    "id": "kb-cyber-laws-it-act",
+    "title": "Legal Protections: IT Act 2000 and Bharatiya Nyaya Sanhita (BNS) 2023",
+    "category": "legal_framework",
+    "content": "Indian law provides stringent safeguards against cyber offenses against women: 1) Section 66E IT Act: Violation of privacy by capturing, publishing or transmitting private body parts without consent (up to 3 years imprisonment). 2) Section 67 & 67A IT Act: Publishing or transmitting obscene or sexually explicit material electronically (up to 5 years imprisonment). 3) Section 78 BNS 2023 (formerly Section 354D IPC): Stalking, including monitoring a woman's internet, email, or social media usage without consent. 4) Section 79 BNS 2023 (formerly Section 509 IPC): Words, gestures, or electronic acts intended to outrage the modesty of a woman. 5) Section 351 BNS 2023 (formerly Section 506 IPC): Criminal intimidation and blackmail.",
+    "source_name": "Legislative Department, Ministry of Law and Justice, Government of India",
+    "source_url": "https://www.indiacode.nic.in",
+    "source_type": "official_legislation",
+    "verified_date": "2026-02-15",
+    "keywords": ["it act", "section 66e", "section 67a", "bns", "ipc", "stalking", "criminal intimidation", "law"]
+  }
+]
