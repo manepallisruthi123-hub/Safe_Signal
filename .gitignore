@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+*.env
+
+# SQLite databases & user data
+*.db
+*.sqlite
+*.sqlite3
+backend/data/*.db
+data/
+
+# Logs & temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Editor directories
+.idea/
+.vscode/
+*.swp

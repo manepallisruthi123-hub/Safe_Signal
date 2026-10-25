@@ -1,0 +1,25 @@
+[
+  {
+    "id": "kb-transit-cab-safety",
+    "title": "Cab, Auto & Public Transit Safety Protocols",
+    "category": "physical_safety",
+    "content": "When travelling alone or late at night: 1) Match the Vehicle & Driver: Always match the vehicle registration number, driver photo, and car make with the cab booking app before boarding. 2) Check the Child Lock: Check the rear door lock mechanism immediately after getting in to ensure you can open the door from the inside at any time. 3) Share Live Journey: Share your real-time GPS route with a trusted contact via SafeSignal or WhatsApp live location. 4) Phone Preparedness: Keep your phone charged above 20% and avoid wearing noise-canceling headphones over both ears in transit. 5) Verbal Boundary: If the driver deviates from the standard GPS navigation, speak assertively: 'Why are we taking this route? I am tracking this ride with my family.' 6) In immediate distress: Dial 112 or activate the vehicle SOS button if available.",
+    "source_name": "Delhi Police & SafeCity Safety Advisory",
+    "source_url": "https://delhipolice.gov.in/women-safety",
+    "source_type": "official_safety_advisory",
+    "verified_date": "2026-02-15",
+    "keywords": ["cab safety", "transit", "uber", "ola", "child lock", "night travel", "taxi"]
+  },
+  {
+    "id": "kb-transit-metro-railway",
+    "title": "Indian Railways & Metro Women Safety Helplines",
+    "category": "physical_safety",
+    "content": "For safety on Indian Railways: RailMadad helpline 139 is operational 24/7 for security emergencies, medical emergencies, and complaints on trains or stations. Female passengers travelling alone can also request support from 'Meri Saheli' RPF teams (Railway Protection Force dedicated female officer squads). For Metro networks (Delhi Metro, Namma Metro, Mumbai Metro), use the emergency passenger communication unit (talk-back button) inside coaches to connect instantly to the train operator, or alert Central Industrial Security Force (CISF) personnel at stations.",
+    "source_name": "Indian Railways / Railway Protection Force (RPF)",
+    "source_url": "https://railmadad.indianrailways.gov.in",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "emergency_number": "139",
+    "keywords": ["railways", "train", "139", "meri saheli", "rpf", "metro", "cisf"]
+  }
+]

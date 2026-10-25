@@ -1,0 +1,24 @@
+[
+  {
+    "id": "kb-harassment-platform-reporting",
+    "title": "Platform-Specific Harassment & Impersonation Reporting Channels",
+    "category": "platform_guidance",
+    "content": "Major social platforms have dedicated escalation reporting forms for harassment, impersonation, and non-consensual content: \n- Instagram: Report account > It's pretending to be someone else > Me / Someone I know. Or use https://help.instagram.com/contact/636276399721841 for impersonation.\n- WhatsApp: Settings > Help > Contact Us, or report contact directly inside the chat (last 5 messages are sent to WhatsApp moderation). You can also report harassment to WhatsApp Grievance Officer India at grievance_officer_wa@support.whatsapp.com.\n- X (formerly Twitter): Use https://help.x.com/forms/safetyandrespect to report targeted harassment, doxxing, or intimate media.\n- Meta / Facebook: Use https://www.facebook.com/help/contact/263149623790594 for impersonation reports.\n- LinkedIn: Report profile > Harassment / Impersonation.",
+    "source_name": "Official Platform Safety Centers (Meta, X, WhatsApp, LinkedIn)",
+    "source_url": "https://about.instagram.com/community/safety",
+    "source_type": "official_platform_guide",
+    "verified_date": "2026-02-15",
+    "keywords": ["instagram report", "whatsapp grievance", "impersonation", "fake account", "block", "x report"]
+  },
+  {
+    "id": "kb-harassment-posh-campus",
+    "title": "Campus & Workplace Harassment: PoSH Act 2013 and UGC Regulations",
+    "category": "institutional_redressal",
+    "content": "For college and university students in India: The UGC (Prevention, prohibition and redressal of sexual harassment of women employees and students in higher educational institutions) Regulations 2015 mandate an Internal Complaints Committee (ICC) in every college and university. Cyber harassment, sending vulgar messages, stalking, or inappropriate conduct by peers or staff falls under ICC jurisdiction. Formal complaints can be submitted in writing within 3 months of the incident. In workplaces, the Sexual Harassment of Women at Workplace (PoSH) Act 2013 provides similar statutory protections.",
+    "source_name": "University Grants Commission (UGC) / Ministry of Women and Child Development",
+    "source_url": "https://www.ugc.gov.in/pdfnews/7203627_regulation_english.pdf",
+    "source_type": "official_legislation",
+    "verified_date": "2026-02-15",
+    "keywords": ["college", "university", "campus", "icc", "posh", "internal complaints committee", "ugc"]
+  }
+]

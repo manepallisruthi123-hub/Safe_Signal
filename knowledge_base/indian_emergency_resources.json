@@ -1,0 +1,62 @@
+[
+  {
+    "id": "kb-helpline-112",
+    "title": "National Emergency Response Support System (ERSS - 112)",
+    "category": "emergency_helpline",
+    "content": "The National Emergency Number 112 is a pan-India single emergency number for immediate police, fire, health, and disaster management assistance. Available 24/7 across all states and Union Territories in India. In an emergency, dial 112 from any mobile or landline even without a SIM or network lock. You can also trigger an SOS alert through the 112 India official mobile application or by pressing the power button three times rapidly on smartphones.",
+    "source_name": "Emergency Response Support System (ERSS), Ministry of Home Affairs, Government of India",
+    "source_url": "https://112.gov.in",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "emergency_number": "112",
+    "keywords": ["police", "emergency", "immediate danger", "ambulance", "attack", "sos", "112"]
+  },
+  {
+    "id": "kb-helpline-181",
+    "title": "Women Helpline (181) - Ministry of Women and Child Development",
+    "category": "women_helpline",
+    "content": "Women Helpline 181 is a 24-hour toll-free telephonic service providing integrated support and assistance to women affected by violence, harassment, domestic abuse, or distress in both private and public spaces. It facilitates referral to appropriate agencies such as police, One Stop Centres (OSC), hospitals, legal aid clinics, and psychological counseling. Operational across all Indian states and Union Territories.",
+    "source_name": "Ministry of Women and Child Development, Government of India",
+    "source_url": "https://wcd.nic.in/schemes/women-helpline-scheme",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "emergency_number": "181",
+    "keywords": ["women helpline", "domestic violence", "harassment", "shelter", "legal aid", "counseling", "181"]
+  },
+  {
+    "id": "kb-helpline-1930",
+    "title": "National Cyber Crime Reporting Helpline (1930)",
+    "category": "cybercrime_helpline",
+    "content": "Helpline 1930 (formerly 155260) is the Citizen Financial Cyber Fraud and Cyber Crime Reporting Helpline operated by the Indian Cyber Crime Coordination Centre (I4C) under the Ministry of Home Affairs. It provides immediate assistance to victims of cyber financial fraud and cyber crimes, including online blackmail, sextortion, unauthorized access, and cyber harassment.",
+    "source_name": "Indian Cyber Crime Coordination Centre (I4C), Ministry of Home Affairs",
+    "source_url": "https://cybercrime.gov.in",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "emergency_number": "1930",
+    "keywords": ["cybercrime", "1930", "online fraud", "blackmail", "sextortion", "financial fraud", "cyber helpline"]
+  },
+  {
+    "id": "kb-helpline-ncw",
+    "title": "National Commission for Women (NCW) 24/7 Helpline & WhatsApp",
+    "category": "women_helpline",
+    "content": "The National Commission for Women (NCW) operates a 24x7 helpline for women in distress at 7827170170. Victims of cyber harassment, domestic abuse, stalking, and harassment can call or reach out via WhatsApp. Complaints can also be registered online through the NCW complaint management portal at ncwapps.nic.in.",
+    "source_name": "National Commission for Women, India",
+    "source_url": "https://ncw.nic.in",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "emergency_number": "7827170170",
+    "keywords": ["ncw", "national commission for women", "whatsapp helpline", "complaint", "harassment"]
+  },
+  {
+    "id": "kb-helpline-1098",
+    "title": "CHILDLINE 1098 / Emergency Support for Minors",
+    "category": "child_helpline",
+    "content": "1098 is a 24/7 free nationwide emergency phone outreach service for children in need of care and protection, operating under the Ministry of Women and Child Development. Also handles cases of online abuse, cyberbullying, grooming, and POCSO offenses targeting minors under 18 years old.",
+    "source_name": "Ministry of Women and Child Development / CHILDLINE India",
+    "source_url": "https://wcd.nic.in",
+    "source_type": "official_government",
+    "verified_date": "2026-02-15",
+    "emergency_number": "1098",
+    "keywords": ["minor", "child", "pocso", "underage", "1098", "school", "teen"]
+  }
+]

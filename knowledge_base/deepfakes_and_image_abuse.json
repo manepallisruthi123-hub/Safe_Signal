@@ -1,0 +1,46 @@
+[
+  {
+    "id": "kb-deepfake-stopncii",
+    "title": "StopNCII.org - Prevent Non-Consensual Intimate Image Sharing",
+    "category": "image_abuse_prevention",
+    "content": "StopNCII.org (Stop Non-Consensual Intimate Image Abuse) is a free global tool operated by the Revenge Porn Helpline and supported by major tech platforms (Meta, TikTok, OnlyFans, etc.). It creates cryptographic hashes (digital fingerprints) directly on your device without ever uploading your actual image or video. Participating tech companies use these hashes to detect and block the images from being shared on their platforms. Anyone aged 18 or older who fears their intimate images may be shared or is already facing image-based blackmail can create a case.",
+    "source_name": "StopNCII.org (SWGfL & Revenge Porn Helpline)",
+    "source_url": "https://stopncii.org",
+    "source_type": "official_prevention_platform",
+    "verified_date": "2026-02-15",
+    "keywords": ["stopncii", "hash", "ncii", "prevent sharing", "blackmail", "intimate images", "morphed"]
+  },
+  {
+    "id": "kb-deepfake-takeitdown",
+    "title": "Take It Down - Tool for Minors (Under 18)",
+    "category": "image_abuse_prevention",
+    "content": "Take It Down (takeitdown.ncmec.org) is run by the National Center for Missing & Exploited Children (NCMEC). It is specifically designed for children and young people under 18 (or adults concerned about images taken when they were under 18). Like StopNCII, it generates anonymous cryptographic hashes on your device so platforms can take down and prevent the spread of explicit photos or videos.",
+    "source_name": "Take It Down, National Center for Missing & Exploited Children",
+    "source_url": "https://takeitdown.ncmec.org",
+    "source_type": "official_prevention_platform",
+    "verified_date": "2026-02-15",
+    "keywords": ["take it down", "ncmec", "minors", "under 18", "explicit photos", "hash"]
+  },
+  {
+    "id": "kb-deepfake-it-rules-24hr",
+    "title": "India IT Rules 2021: 24-Hour Mandatory Takedown for Non-Consensual Nudity & Morphed Images",
+    "category": "legal_framework",
+    "content": "Under Rule 3(2)(b) of the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, all social media intermediaries operating in India are legally mandated to remove or disable access to content that exposes the private area of any individual, shows full or partial nudity, depicts any sexual act, or is in the nature of impersonation or morphed imagery, within 24 hours of receiving a complaint from the victim or authorized representative.",
+    "source_name": "Ministry of Electronics and Information Technology (MeitY), Government of India",
+    "source_url": "https://www.meity.gov.in/writereaddata/files/Intermediary_Guidelines_and_Digital_Media_Ethics_Code_Rules-2021.pdf",
+    "source_type": "official_government_regulation",
+    "verified_date": "2026-02-15",
+    "keywords": ["it rules 2021", "24 hours", "takedown", "morphed image", "grievance officer", "meity"]
+  },
+  {
+    "id": "kb-deepfake-response-protocol",
+    "title": "Step-by-Step Response Protocol for Suspected Deepfakes or Image Morphing",
+    "category": "incident_response",
+    "content": "1) Immediate Emotional Anchoring: Remember that you did nothing wrong. The perpetrator is committing a criminal offense under Indian law. 2) DO NOT Pay Blackmailers: Paying extortion demands almost never stops the threat and often leads to escalation. 3) Document URLs and Context: Copy post URLs, profile URLs, timestamp, and account handle. 4) Use StopNCII.org: Generate local hashes to prevent propagation on social platforms. 5) File Grievance with Platform: Cite Rule 3(2)(b) IT Rules 2021 to the platform's Resident Grievance Officer in India for 24-hr removal. 6) Report on cybercrime.gov.in or call 1930 immediately.",
+    "source_name": "SafeSignal Incident Response Guidance & Cyber Peace Foundation",
+    "source_url": "https://cybercrime.gov.in",
+    "source_type": "guidance_protocol",
+    "verified_date": "2026-02-15",
+    "keywords": ["deepfake protocol", "extortion", "blackmail", "grievance officer", "do not pay", "response steps"]
+  }
+]
