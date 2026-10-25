@@ -77,7 +77,8 @@ Most existing women's safety applications focus almost exclusively on a basic pa
 
 ### Step 1: Clone or Navigate to the Repository
 ```powershell
-cd C:\Users\Sruthi\.gemini\antigravity\scratch\safesignal
+git clone https://github.com/manepallisruthi123-hub/Safe_Signal.git
+cd Safe_Signal
 ```
 
 ### Step 2: Configure Environment Variables
