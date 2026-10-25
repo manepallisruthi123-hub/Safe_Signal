@@ -67,7 +67,9 @@ def test_action_plan_deepfake():
     data = response.json()
     assert "StopNCII.org" in str(data["relevantResources"]) or "StopNCII.org" in str(data["reportingOptions"])
 
-def test_assistant_query():
+def test_assistant_query(monkeypatch):
+    from app import config
+    monkeypatch.setattr(config, "get_gemini_api_key", lambda: "")
     response = client.post("/api/assistant", json={
         "query": "How do I report online blackmail on cybercrime.gov.in?"
     })

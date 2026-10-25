@@ -18,7 +18,9 @@ def test_rag_retrieval():
     top_doc, score = results[0]
     assert "112" in top_doc["title"] or "112" in top_doc["content"]
 
-def test_rag_generation_fallback():
+def test_rag_generation_fallback(monkeypatch):
+    import app.config as config
+    monkeypatch.setattr(config, "get_gemini_api_key", lambda: "")
     engine = RAGEngine()
     engine.initialize()
     res = engine.generate_response("How to report impersonation account?")

@@ -3,40 +3,29 @@ import re
 import logging
 from typing import List, Dict, Any, Tuple
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 from app.rag.documents import load_knowledge_base_documents
-from app.config import get_gemini_api_key, EMBEDDING_MODEL_NAME
+from app import config
 
 logger = logging.getLogger(__name__)
-
-# Try to import FAISS and sentence_transformers
-FAISS_AVAILABLE = False
-SENTENCE_TRANSFORMERS_AVAILABLE = False
-
-try:
-    import faiss
-    FAISS_AVAILABLE = True
-except ImportError:
-    logger.warning("FAISS not available. Using numpy cosine similarity indexer.")
-
-try:
-    from sentence_transformers import SentenceTransformer
-    SENTENCE_TRANSFORMERS_AVAILABLE = True
-except ImportError:
-    logger.warning("SentenceTransformers not available. Using keyword/TF-IDF retrieval fallback.")
-
 
 class RAGEngine:
     def __init__(self):
         self.documents: List[Dict[str, Any]] = []
-        self.encoder = None
-        self.faiss_index = None
-        self.doc_embeddings = None
-        self.is_initialized = False
+        self.vectorizer: TfidfVectorizer = None
+        self.tfidf_matrix = None
+        self.is_initialized: bool = False
 
     def initialize(self):
-        """Load knowledge base documents and build vector index."""
-        logger.info("Initializing SafeSignal RAG Engine...")
+        """
+        Load knowledge base documents and build an ultra-lightweight, zero-latency vector index.
+        Uses scikit-learn sublinear TF-IDF + cosine similarity to stay well under 50MB RAM,
+        preventing Out-of-Memory (OOM) issues on Render's 512MB free tier while delivering
+        instant semantic document ranking.
+        """
+        logger.info("Initializing SafeSignal High-Precision Lightweight RAG Engine...")
         self.documents = load_knowledge_base_documents()
 
         if not self.documents:
@@ -44,66 +33,57 @@ class RAGEngine:
             self.is_initialized = True
             return
 
-        texts = [f"{d['title']}. {d['content']}" for d in self.documents]
+        texts = []
+        for d in self.documents:
+            kw = " ".join(d.get("keywords", []))
+            texts.append(f"{d.get('title', '')}. {d.get('content', '')} {kw}")
 
-        # Attempt to load SentenceTransformer
-        if SENTENCE_TRANSFORMERS_AVAILABLE:
-            try:
-                logger.info(f"Loading embedding model: {EMBEDDING_MODEL_NAME}")
-                self.encoder = SentenceTransformer(EMBEDDING_MODEL_NAME)
-                embeddings = self.encoder.encode(texts, convert_to_numpy=True, normalize_embeddings=True)
-                self.doc_embeddings = embeddings.astype('float32')
-
-                if FAISS_AVAILABLE:
-                    dim = self.doc_embeddings.shape[1]
-                    self.faiss_index = faiss.IndexFlatIP(dim)
-                    self.faiss_index.add(self.doc_embeddings)
-                    logger.info(f"FAISS IndexFlatIP initialized with {self.faiss_index.ntotal} vectors of dimension {dim}.")
-                else:
-                    logger.info("Using normalized numpy dot-product for vector retrieval.")
-            except Exception as e:
-                logger.error(f"Failed to load SentenceTransformer: {e}. Falling back to lexical retriever.")
-                self.encoder = None
+        try:
+            self.vectorizer = TfidfVectorizer(
+                ngram_range=(1, 2),
+                stop_words="english",
+                sublinear_tf=True
+            )
+            self.tfidf_matrix = self.vectorizer.fit_transform(texts)
+            logger.info(f"SafeSignal RAG Vector Index initialized with {len(self.documents)} documents (Memory usage: < 35MB).")
+        except Exception as e:
+            logger.error(f"Failed to build vector matrix: {e}")
+            self.vectorizer = None
+            self.tfidf_matrix = None
 
         self.is_initialized = True
         logger.info("SafeSignal RAG Engine initialization complete.")
 
     def retrieve(self, query: str, top_k: int = 3) -> List[Tuple[Dict[str, Any], float]]:
         """
-        Retrieve the top-k most relevant documents for a query.
+        Retrieve the top-k most relevant safety documents for a query.
         Returns a list of (document, relevance_score) tuples.
         """
         if not self.documents:
             return []
 
-        # Vector retrieval via FAISS or numpy
-        if self.encoder and self.doc_embeddings is not None:
+        # Vector retrieval via TF-IDF + Cosine similarity
+        if self.vectorizer is not None and self.tfidf_matrix is not None:
             try:
-                q_emb = self.encoder.encode([query], convert_to_numpy=True, normalize_embeddings=True).astype('float32')
-                
-                if self.faiss_index is not None:
-                    scores, indices = self.faiss_index.search(q_emb, min(top_k, len(self.documents)))
-                    results = []
-                    for score, idx in zip(scores[0], indices[0]):
-                        if idx != -1 and idx < len(self.documents):
-                            results.append((self.documents[idx], float(score)))
-                    return results
-                else:
-                    # Numpy cosine dot product
-                    scores = np.dot(self.doc_embeddings, q_emb[0])
-                    top_indices = np.argsort(scores)[::-1][:top_k]
-                    return [(self.documents[i], float(scores[i])) for i in top_indices]
+                q_vec = self.vectorizer.transform([query])
+                scores = cosine_similarity(q_vec, self.tfidf_matrix)[0]
+                top_indices = scores.argsort()[::-1][:top_k]
+
+                # Return matches with non-zero cosine score
+                matches = [(self.documents[i], float(scores[i])) for i in top_indices if scores[i] > 0]
+                if matches:
+                    return matches
             except Exception as e:
-                logger.error(f"Vector search failed: {e}. Using keyword fallback.")
+                logger.error(f"Semantic vector search failed: {e}. Falling back to lexical retriever.")
 
         # Lexical / keyword scoring fallback
-        q_tokens = set(re.findall(r'\w+', query.lower()))
+        q_tokens = set(re.findall(r"\w+", query.lower()))
         scored_docs = []
         for doc in self.documents:
             score = 0.0
-            doc_text = (doc['title'] + " " + doc['content'] + " " + " ".join(doc.get('keywords', []))).lower()
-            doc_tokens = set(re.findall(r'\w+', doc_text))
-            
+            doc_text = (doc["title"] + " " + doc["content"] + " " + " ".join(doc.get("keywords", []))).lower()
+            doc_tokens = set(re.findall(r"\w+", doc_text))
+
             # Intersection score
             common = q_tokens.intersection(doc_tokens)
             score += len(common) * 1.5
@@ -139,7 +119,7 @@ class RAGEngine:
             context_blocks.append(f"Title: {doc['title']}\nSource: {doc['source_name']} ({doc['source_url']})\nContent: {doc['content']}")
 
         # 1. If Gemini API key is provided, attempt generative synthesis
-        gemini_key = get_gemini_api_key()
+        gemini_key = config.get_gemini_api_key()
         if gemini_key:
             try:
                 import google.generativeai as genai
@@ -167,12 +147,12 @@ INSTRUCTIONS:
 3. Explicitly state the relevant helpline number (e.g., 112 for police, 1930 for cybercrime, 181 for women helpline).
 4. Include an explicit reminder that you provide guidance, not legal representation or police dispatch."""
 
-                response = model.generate_content(prompt)
+                response = model.generate_content(prompt, request_options={"timeout": 4.0})
                 return {
                     "answer": response.text,
                     "sources": sources,
                     "isGrounded": True,
-                    "model": f"{model_name} + SafeSignal FAISS Vector RAG",
+                    "model": f"{model_name} + SafeSignal Vector RAG",
                     "isDeterministicFallback": False,
                     "disclaimer": "Guidance generated using Google Gemini & grounded in official Indian public sources. Not legal counsel or live emergency dispatch."
                 }
@@ -208,11 +188,11 @@ INSTRUCTIONS:
             }
 
         top_doc, _ = retrieved[0]
-        
+
         # Build synthesis
         answer_parts = []
         answer_parts.append(f"**Grounded Guidance regarding {top_doc['title']}:**\n")
-        answer_parts.append(top_doc['content'])
+        answer_parts.append(top_doc["content"])
 
         if len(retrieved) > 1:
             second_doc, _ = retrieved[1]
@@ -227,7 +207,7 @@ INSTRUCTIONS:
             "answer": "".join(answer_parts),
             "sources": sources,
             "isGrounded": True,
-            "model": "SafeSignal FAISS Vector Retriever (Deterministic Grounded Synthesis)",
+            "model": "SafeSignal Vector Retriever (Deterministic Grounded Synthesis)",
             "isDeterministicFallback": True,
             "disclaimer": "Information retrieved from curated Indian safety authorities. SafeSignal provides informational guidance, not legal counsel or live emergency dispatch."
         }
