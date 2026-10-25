@@ -1,22 +1,64 @@
 # SafeSignal — AI-Powered Unified Women's Safety Platform
 ### Built for recHERsion'26 Hackathon
 
+[![Live Frontend](https://img.shields.io/badge/Vercel-Live%20Frontend-black?logo=vercel)](https://safe-signal-livid.vercel.app)
+[![Live Backend](https://img.shields.io/badge/Render-Live%20FastAPI%20Backend-46e3b7?logo=render)](https://safe-signal-backend-gf5t.onrender.com)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/manepallisruthi123-hub/Safe_Signal)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 > **"Safety is not just an SOS button. It is a complete workflow: Identify a threat → Understand the situation → Get trustworthy guidance → Take an actionable next step → Reach trusted support."**
 
 ---
 
-## 1. Product Overview & Key Differentiators
+## 🌐 Live Deployments
+
+* **Frontend Web App (Vercel)**: [https://safe-signal-livid.vercel.app](https://safe-signal-livid.vercel.app)
+* **Backend API (Render)**: [https://safe-signal-backend-gf5t.onrender.com](https://safe-signal-backend-gf5t.onrender.com)
+* **Interactive API Documentation (Swagger)**: [https://safe-signal-backend-gf5t.onrender.com/docs](https://safe-signal-backend-gf5t.onrender.com/docs)
+* **API Health Check**: [https://safe-signal-backend-gf5t.onrender.com/health](https://safe-signal-backend-gf5t.onrender.com/health)
+
+---
+
+## 1. Product Overview & Key Capabilities
 
 Most existing women's safety applications focus almost exclusively on a basic panic button. However, women and girls facing distress often experience a complex spectrum of threats—from suspicious cab deviations and physical intimidation to digital stalking, non-consensual image manipulation (deepfakes/NCII), and online blackmail.
 
 **SafeSignal** unites both **physical safety** and **digital safety** into a single, cohesive, privacy-first platform:
 
-1. **Physical Safety & SOS:** A 2-step confirmed emergency trigger that captures GPS coordinates with explicit user consent, formats Google Maps & OpenStreetMap links, and prepares immediate SMS and WhatsApp alerts.
-2. **Safe Journey & Trusted Ally:** Real-time transit monitoring with destination, arrival countdown, vehicle notes (cab registration, driver name), overdue detection, and a dedicated **Trusted Ally View** for contacts.
-3. **Cyber Harassment & Threat Analyzer:** Analyzes suspicious messages, DMs, and blackmail comments against Indian legal frameworks (Bharatiya Nyaya Sanhita 2023 & IT Act 2000), offering transparent threat signals and evidence preservation checklists.
-4. **Suspected Deepfake & Image-Abuse Support:** Empathetic, guided intake for morphed images and intimate imagery. Integrates with **StopNCII.org** on-device hashing, Take It Down (for minors), and generates **IT Rules 2021 Rule 3(2)(b) 24-Hour Mandatory Legal Takedown Notices**.
-5. **AI Safety Assistant (RAG Pipeline):** Retrieval-Augmented Generation indexing curated Indian safety documentation with FAISS vector retrieval, displaying clickable official citations and verification dates.
-6. **Unified Safety Action Plan:** An end-to-end situation selector providing an immediate 6-step protocol (Immediate step, Safety guidance, Evidence checklist, Helpline options, Official portals, and Follow-up).
+1. **Physical Safety & Emergency SOS Dispatch**:
+   * Two-step confirmed emergency trigger with a 3-second abort grace period.
+   * **Multi-Tier Geolocation Engine**: Cascades from hardware satellite GPS to browser Wi-Fi triangulation, client-side IP lookup, and server fallback. Coordinates are guaranteed never to be unavailable.
+   * Formats a prominent, clickable Google Maps link (`https://maps.google.com/?q=lat,lng`) directly in the message body.
+   * Automatically formats Indian mobile numbers with `+91` country code prefix for reliable WhatsApp (`wa.me`) and SMS composer routing.
+   * Direct calling integration with National Emergency **112**.
+
+2. **Safe Journey & Trusted Ally**:
+   * Real-time transit monitoring with destination, arrival countdown timer, and vehicle notes (cab registration, driver name).
+   * Automatically detects and flags overdue journeys.
+   * Generates departure GPS location links for WhatsApp and SMS sharing.
+   * Features a dedicated **Trusted Ally View** displaying exact status details to trusted contacts.
+
+3. **Cyber Harassment & Threat Text Analyzer**:
+   * Heuristic and AI-driven analysis of abusive DMs, threatening emails, and blackmail comments.
+   * Evaluates severity against Indian legal frameworks (**Bharatiya Nyaya Sanhita 2023** and **IT Act 2000**).
+   * Generates actionable signal breakdowns, evidence preservation checklists (uncompressed screenshots, message headers, timestamps), and step-by-step reporting guides.
+
+4. **Deepfake & Non-Consensual Image Abuse (NCII) Support**:
+   * Empathetic, guided intake for victims of morphed imagery, face-swaps, and cyber extortion.
+   * Direct integration guidance for **StopNCII.org** (on-device cryptographic perceptual hashing) and **Take It Down** (NCMEC tool for minors under 18).
+   * Generates legally compliant **IT Rules 2021 Rule 3(2)(b) 24-Hour Mandatory Grievance Officer Takedown Notices**.
+
+5. **AI Safety Assistant (RAG Pipeline)**:
+   * **Retrieval-Augmented Generation (RAG)** grounded on 17 curated, verified Indian legal and emergency documents.
+   * Powered by Google Gemini 1.5/2.5 Flash with fallback to a deterministic semantic synthesis engine.
+   * Cites verified official authorities, official portals, and emergency helplines.
+
+6. **Unified Safety Action Planner**:
+   * Situation selector providing customized 6-step protocols (Immediate Step, Safety Guidance, Evidence Checklist, Reporting Options, Official Portals, and Follow-up).
+
+7. **Authentication & User Privacy**:
+   * **Real Google Sign-In & One Tap** via Google Identity Services (GIS SDK) and server-side token verification.
+   * Local session persistence with complete user data isolation.
 
 ---
 
@@ -25,160 +67,164 @@ Most existing women's safety applications focus almost exclusively on a basic pa
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        FRONTEND (React 19 + Vite)                       │
-│   Tailwind CSS (Deep Plum, Soft Lavender, Restrained Coral, Off-White) │
-│       Mobile-First UI • Lucide Icons • On-Demand Geolocation          │
+│    Tailwind CSS (Deep Plum, Lavender, Coral) • Responsive PWA UI      │
+│      Google Identity Services • Multi-Tier Geolocation Engine          │
 └──────────────────┬─────────────────────────────────┬───────────────────┘
                    │                                 │
-                   ▼ (REST HTTP / JSON)              ▼ (Browser Storage)
+                   ▼ (REST HTTPS / JSON)             ▼ (Local-First Storage)
 ┌──────────────────────────────────────────┐  ┌──────────────────────────┐
 │          FASTAPI BACKEND API             │  │   LOCALSTORAGE ENGINE    │
-│  - GET  /health                          │  │  - Trusted Contacts      │
+│  - GET  /health                          │  │  - User Isolated Data    │
+│  - GET  /api/location/current            │  │  - Trusted Allies        │
 │  - POST /api/assistant (RAG)             │  │  - Active Journeys       │
-│  - POST /api/analyze-text (Heuristic/AI) │  │  - Saved Case Dossiers   │
-│  - POST /api/action-plan                 │  │  - Demo State Flags      │
-│  - GET  /api/resources                   │  └──────────────────────────┘
+│  - POST /api/analyze-text (Heuristic/AI) │  │  - Cached Coordinates    │
+│  - POST /api/action-plan                 │  │  - Incident Dossiers     │
+│  - POST /api/auth/google                 │  └──────────────────────────┘
+│  - GET  /api/resources                   │
 └──────────────────┬───────────────────────┘
                    │
                    ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        RAG RETRIEVAL PIPELINE                          │
-│  - Vector Index: FAISS Flat Inner-Product (Cosine Normalized)          │
-│  - Embeddings: sentence-transformers/all-MiniLM-L6-v2                  │
-│  - Knowledge Base: Official Indian Cybercrime, NCW, 112, IT Rules 2021 │
-│  - Generative Engine: Gemini 1.5 Flash (with Grounded Fallback Engine) │
+│  - Vector Space: Sublinear TF-IDF + Cosine Similarity (< 35MB RAM)     │
+│  - Verified Corpus: 17 Official Legal, Emergency & Cyber Documents     │
+│  - Synthesis Engine: Google Gemini 1.5/2.5 Flash (Grounded Generation) │
+│  - Fallback Engine: Deterministic Legal Protocol Synthesizer           │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Safety & Privacy Guarantees
-- **No Silent Tracking:** GPS coordinates are acquired **strictly** upon user action and never continuously logged in the background.
-- **Zero Media Uploads:** SafeSignal **never** asks users to upload or share intimate images. It uses cryptographic on-device hashing standards (StopNCII.org) and text incident notes.
-- **Honest Action Reporting:** SafeSignal never fakes SMS dispatch or automated police calls. It explicitly shows whether an SMS composer was opened or copied.
+- **Explicit Consent**: GPS coordinates are acquired **strictly upon user action**; no continuous background tracking or silent monitoring.
+- **Zero Image Uploads**: SafeSignal **never** asks users to upload or transmit intimate images. Guidance utilizes on-device perceptual hashing (StopNCII.org) and text incident notes.
+- **Transparent Communication**: SafeSignal clearly indicates when SMS or WhatsApp messaging composers are opened, requiring user confirmation before sending.
 
 ---
 
 ## 3. Technology Stack
 
-- **Frontend:** React 19, Vite 8, Tailwind CSS v3, Lucide React icons.
-- **Backend:** Python 3.12, FastAPI, Uvicorn, Pydantic v2.
-- **AI & RAG:** FAISS (CPU), Sentence Transformers (`all-MiniLM-L6-v2`), Google Generative AI (Gemini 1.5 Flash), NumPy, Scikit-Learn.
-- **Testing:** Pytest, FastAPI TestClient, Vite Build verification.
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React 19, Vite 8, Tailwind CSS 3.4, Lucide React Icons |
+| **Authentication** | Google Identity Services (GIS SDK), OAuth 2.0 Web Client, PyJWT, Bcrypt |
+| **Backend** | Python 3.12, FastAPI, Uvicorn, Pydantic v2, SQLite, HTTPX |
+| **AI & RAG** | Scikit-Learn (TF-IDF vector space), NumPy, Google Gemini 1.5/2.5 Flash (`google-generativeai`) |
+| **Geolocation** | HTML5 Geolocation API, Client-Side IP Lookup (`ipwho.is`), Dynamic Google Maps queries |
+| **Hosting & CI/CD** | Vercel (Frontend), Render (FastAPI Web Service), GitHub |
 
 ---
 
-## 4. Prerequisites
+## 4. Curated Knowledge Base Corpus
 
-- **Node.js:** v18.0.0 or higher (Tested on v24.14.0)
-- **Python:** v3.10 or higher (Tested on v3.12.9)
-- **Package Managers:** npm and pip
+The RAG engine is indexed against 17 verified official Indian safety records across five primary domains:
+
+1. **Indian Emergency Resources**: ERSS 112, Women Helpline 181, National Commission for Women (NCW) WhatsApp helpline, Railway Protection Force (Meri Saheli 139).
+2. **Cybercrime Reporting**: National Cyber Crime Reporting Portal (`cybercrime.gov.in`), Helpline 1930, Anonymous vs. Tracked reporting options.
+3. **Legal Remedies & Penalties**: Information Technology Act 2000 (Sections 66E, 67, 67A), Bharatiya Nyaya Sanhita 2023 (Sections 351, 354D stalking, 509 insulting modesty).
+4. **Deepfakes & Non-Consensual Imagery**: Take It Down (minors), StopNCII.org (adults), IT Rules 2021 Rule 3(2)(b) 24-hour intermediary removal obligations.
+5. **Transit & Physical Safety**: Cab/auto safety protocols, child-lock verification, railway coach emergency talkback systems.
 
 ---
 
-## 5. Installation & Startup Instructions
+## 5. Local Setup & Installation
 
-### Step 1: Clone or Navigate to the Repository
-```powershell
+### Prerequisites
+- **Node.js**: v18.0.0 or higher
+- **Python**: v3.10 or higher
+- **Package Managers**: `npm` and `pip`
+
+### Step 1: Clone the Repository
+```bash
 git clone https://github.com/manepallisruthi123-hub/Safe_Signal.git
 cd Safe_Signal
 ```
 
 ### Step 2: Configure Environment Variables
-Copy `.env.example` to `.env`:
-```powershell
-Copy-Item .env.example .env
-```
-*(Optional)* Add your `GEMINI_API_KEY` in `.env` if you wish to use generative AI synthesis. If left blank, SafeSignal's built-in deterministic RAG fallback engine functions seamlessly!
+Copy the template files:
+```bash
+# In the root directory:
+cp .env.example .env
 
-### Step 3: Install & Start the Backend
-Open a terminal for the backend:
-```powershell
+# In frontend directory:
+cp frontend/.env.example frontend/.env
+```
+
+*(Optional)* Add your `GEMINI_API_KEY` in `.env` for generative AI responses. If omitted, the deterministic RAG fallback functions immediately.
+
+### Step 3: Run the Backend
+```bash
 cd backend
 pip install -r requirements.txt
-$env:PYTHONPATH="."
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+python run_server.py
 ```
-The FastAPI backend will start at: `http://localhost:8000`
-- Swagger Interactive Documentation: `http://localhost:8000/docs`
-- Health Endpoint: `http://localhost:8000/health`
+* Backend will be available at: `http://localhost:8000`
+* Swagger API Documentation: `http://localhost:8000/docs`
 
-### Step 4: Install & Start the Frontend
-Open a separate terminal for the frontend:
-```powershell
+### Step 4: Run the Frontend
+In a new terminal:
+```bash
 cd frontend
 npm install
 npm run dev
 ```
-The SafeSignal web application will launch at: `http://localhost:5173`
+* Frontend will be available at: `http://localhost:5173`
 
 ---
 
-## 6. How Demo Mode Works
+## 6. Automated Testing
 
-SafeSignal was designed to be demonstrable out-of-the-box without requiring paid API tokens or cloud database provisioning:
-- **Pre-populated Seed Contacts:** Includes trusted contacts (Pooja Sharma, Ananya Deshmukh, Vikram Mehta) for testing SOS and journey flows.
-- **Sample Cyber Harassment Incidents:** Includes sample text presets (Severe Blackmail, Persistent Stalking, Benign message) for instant 1-click evaluation.
-- **Grounded RAG Retrieval:** If no Gemini API key is configured, the system retrieves relevant documents from the Indian legal and emergency knowledge base and provides a structured, cited response with official source URLs.
-- **One-Click Reset:** The top demo banner features a "Reset Demo Data" button that clears all local modifications and restores clean hackathon seed data.
-
----
-
-## 7. Automated Testing Instructions
-
-### Running Backend Tests (Pytest)
-```powershell
+### Backend Unit & Integration Tests (Pytest)
+```bash
 cd backend
-$env:PYTHONPATH="."
-python -m pytest -v
+python -m pytest tests/ -v
 ```
-This runs automated tests covering:
-- API health and root endpoints
-- Cyber harassment heuristic scoring and pattern signals
-- 6-step Action Plan generation
-- RAG document loading and source citation accuracy
+Verifies:
+* RAG knowledge base document integrity and semantic vector retrieval
+* Cyber harassment heuristic risk scoring and regex matchers
+* Emergency action planner generation
+* Authentication endpoints and token verification
 
-### Running Frontend Build Verification
-```powershell
+### Frontend Production Build
+```bash
 cd frontend
 npm run build
 ```
-This compiles the complete React production bundle and confirms zero JSX or import errors.
+Validates complete JSX compilation, asset bundling, and TypeScript/ESLint rules with zero errors.
 
 ---
 
-## 8. Verified Indian Helplines & Legal Citations
+## 7. Verified Emergency Helplines (India)
 
 | Service | Helpline Number | Authority / Portal |
 | :--- | :--- | :--- |
-| **National Emergency (Police, Fire, Ambulance)** | **112** | Ministry of Home Affairs (https://112.gov.in) |
-| **National Cybercrime Helpline** | **1930** | Indian Cyber Crime Coordination Centre (I4C) (https://cybercrime.gov.in) |
+| **National Emergency (Police, Fire, Ambulance)** | **112** | Ministry of Home Affairs ([112.gov.in](https://112.gov.in)) |
+| **National Cybercrime Helpline** | **1930** | Indian Cyber Crime Coordination Centre ([cybercrime.gov.in](https://cybercrime.gov.in)) |
 | **Women in Distress Helpline** | **181** | Ministry of Women & Child Development |
-| **NCW WhatsApp & Call Helpline** | **7827170170** | National Commission for Women (https://ncw.nic.in) |
-| **Railway Passenger Safety (Meri Saheli)** | **139** | RailMadad / Railway Protection Force (https://railmadad.indianrailways.gov.in) |
+| **NCW Women Helpline (Call / WhatsApp)** | **7827170170** | National Commission for Women ([ncw.nic.in](https://ncw.nic.in)) |
+| **Railway Passenger Safety (Meri Saheli)** | **139** | RailMadad / RPF ([railmadad.indianrailways.gov.in](https://railmadad.indianrailways.gov.in)) |
 | **Childline (POCSO / Minors)** | **1098** | CHILDLINE India Foundation |
 
 ---
 
-## 9. Deployment Instructions
+## 8. Deployment Architecture
 
-### Frontend (Vercel / Netlify)
-1. Link your repository or upload the `frontend` folder.
-2. Build command: `npm run build`
-3. Output directory: `dist`
-4. Set environment variable: `VITE_BACKEND_URL=https://your-backend-domain.com`
+### Frontend on Vercel
+* **Framework**: Vite
+* **Root Directory**: `frontend`
+* **Build Command**: `npm run build`
+* **Output Directory**: `dist`
+* **SPA Routing**: Handled via `frontend/vercel.json` rewrite rules.
 
-### Backend (Render / Railway / AWS EC2)
-1. Deploy `backend` directory.
-2. Build command: `pip install -r requirements.txt`
-3. Start command: `python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-4. Set environment variables: `CORS_ORIGINS=*`, `GEMINI_API_KEY=your_key`
-
----
-
-## 10. Known Limitations & Next Steps
-
-1. **Browser Background Execution:** Modern web browsers restrict background execution when tabs are closed. Overdue calculations currently trigger when the app is active or refreshed. For production, a native PWA or Android/iOS companion with Web Push Notifications is planned.
-2. **Direct Carrier SMS Gateway:** In demo mode, SMS alerts use standard `sms:` URI schemes to open the device composer. In production, an integrated Twilio / Karix SMS API gateway will provide server-side dispatch.
-3. **Multilingual Support:** Planned expansion into 10 Indian regional languages (Hindi, Tamil, Telugu, Kannada, Bengali, Marathi, etc.) for broader accessibility among rural and collegiate demographics.
+### Backend on Render
+* **Runtime**: Python 3.12
+* **Root Directory**: `backend`
+* **Build Command**: `pip install -r requirements.txt`
+* **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+* **Memory Optimization**: Sublinear TF-IDF vector space uses **< 35MB RAM**, comfortably fitting within Render's 512MB free tier.
 
 ---
 
-*Developed with pride for **recHERsion'26 Hackathon**.*
+## 9. License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+*Developed for the **recHERsion'26 Hackathon**.*
