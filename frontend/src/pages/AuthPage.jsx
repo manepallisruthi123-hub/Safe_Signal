@@ -16,7 +16,7 @@ import {
 import { auth } from "../services/auth";
 import { api } from "../services/api";
 
-const GOOGLE_CLIENT_ID = "981900039921-edrnhf4voup6fpc37n2db5ko2bmssot7.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "981900039921-edrnhf4voup6fpc37n2db5ko2bmssot7.apps.googleusercontent.com";
 
 export function AuthPage({ onAuthSuccess, onBrowsePublic }) {
   const [mode, setMode] = useState("login"); // "login" | "signup" | "forgot" | "reset"

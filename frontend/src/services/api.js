@@ -1,10 +1,19 @@
 import { storage } from "./storage";
 
 const getBackendUrl = () => {
+  const envUrl = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_URL;
+  if (envUrl && envUrl.trim()) return envUrl.trim().replace(/\/+$/, "");
   const saved = storage.getSettings()?.backendUrl;
-  if (saved && saved.trim()) return saved;
+  if (saved && saved.trim()) return saved.trim().replace(/\/+$/, "");
   if (typeof window !== "undefined" && window.location && window.location.hostname) {
-    return `http://${window.location.hostname}:8000`;
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      return "http://localhost:8000";
+    }
+    if (/^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)/.test(window.location.hostname)) {
+      return `http://${window.location.hostname}:8000`;
+    }
+    // Deployed production domain (e.g. Vercel) with no backend configured yet
+    return "";
   }
   return "http://localhost:8000";
 };
